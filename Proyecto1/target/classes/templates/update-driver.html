@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+
+<body>
+    <div class="formcontainer">
+        <h1>Editar conductor</h1>
+         <form action="#" th:action="@{/driver/create}" th:object="${driver}" method="post">
+            <input type="hidden" th:field="*{id}" id="id">
+            <label for="driverName">Nombre: </label>
+            <input type="text" th:field="*{nombre}" id="driverName">
+            <span th:if="${#fields.hasErrors('Name')}" th:errors="*{firstName}"
+                th:class="${#fields.hasErrors('firstName')} ? 'error' : ''"></span><br>
+
+            
+            <label for="identificationDriver">cedula: </label>
+            <input type="text" th:field="*{identification}" id="identificationDriver">
+            <span th:if="${#fields.hasErrors('identification')}" th:errors="*{identification}"
+                th:class="${#fields.hasErrors('identification')} ? 'error' : ''"></span><br>
+
+            
+            <label for="phoneDriver">telefono: </label>
+            <input type="text" th:field="*{phone}" id="phoneDriver">
+            <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
+                th:class="${#fields.hasErrors('phone')} ? 'error' : ''"></span><br>
+
+            <label for="addressDriver">telefono: </label>
+            <input type="text" th:field="*{address}" id="addressDriver">
+            <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+                th:class="${#fields.hasErrors('address')} ? 'error' : ''"></span><br>
+
+               <table class="asignacion_buses">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Placa</th>
+                <th>Dia de asignacion</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr th:each="p : ${bus_asig}" th:if="${b.id}">
+                <td th:text="${b.placa}"></td>
+                <td th:text="${b.dia}"></td>
+             
+            </tr>
+        </tbody>
+    </table>
+            <button type="submit">Actualizar</button>
+        </form>
+    </div>
+
+    <a th:href="@{/driver/crud}">back</a>
+</body>
+
+</html>

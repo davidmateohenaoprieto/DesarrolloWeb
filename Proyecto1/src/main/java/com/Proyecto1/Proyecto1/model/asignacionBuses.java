@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,13 +25,17 @@ public class asignacionBuses {
     @Column (name="days_asig",nullable=false)
     private String dias_asignacion;
 
+    @ManyToOne
+    Conductor conductor;
+
     public asignacionBuses() {
     }
 
-    public asignacionBuses(String nombreCondu, String placa, String dias_asignacion) {
+    public asignacionBuses(String nombreCondu, String placa, String dias_asignacion, Conductor conductor) {
         this.nombreCondu = nombreCondu;
         this.placa = placa;
         this.dias_asignacion = dias_asignacion;
+        this.conductor = conductor;
     }
 
     public long getId() {

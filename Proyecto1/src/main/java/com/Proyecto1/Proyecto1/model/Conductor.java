@@ -1,10 +1,14 @@
 package com.Proyecto1.Proyecto1.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 //import java.util.List;
@@ -35,8 +39,8 @@ public class Conductor {
     private String address;
     
 /*pendiente en definir SI SE USA CONSTRUCTOIR Y SI SE FREA UNA COLUMNA*/
-    //private List<asignacionBuses> list_bus;
-
+    @OneToMany(mappedBy = "conductor" )
+    private List<asignacionBuses> list_bus=new ArrayList<>();
 
     public Conductor(){
 
@@ -50,6 +54,15 @@ public class Conductor {
         this.phoneNumber = phoneNumber;
         this.address = address;
     
+    }
+
+    public List<asignacionBuses> getList_bus() {
+        return list_bus;
+    }
+
+
+    public void addList_bus(asignacionBuses e) {
+        this.list_bus.add(e);
     }
 
 
@@ -101,15 +114,5 @@ public class Conductor {
     public void setAddress(String address) {
         this.address = address;
     }
-
-
-    /*public List<asignacionBuses> getList_bus() {
-        return list_bus;
-    }
-
-    public void setList_bus(List<asignacionBuses> list_bus) {
-        this.list_bus = list_bus;
-    }*/
-
 
 }

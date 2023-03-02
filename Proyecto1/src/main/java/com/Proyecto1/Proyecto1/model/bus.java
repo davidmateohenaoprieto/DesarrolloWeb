@@ -1,5 +1,6 @@
 package com.Proyecto1.Proyecto1.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,8 +27,8 @@ public class bus {
     @Column (name="model",nullable=false)
     private String modelo;
 
-
-    //private List<asignacionRutas> rutasAsignadas;
+    @OneToMany(mappedBy = "bus")
+    private List<asignacionRutas> rutasAsignadas=new ArrayList<>();
 
     public bus() {
     }
@@ -38,6 +41,22 @@ public class bus {
 
 
     
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<asignacionRutas> getRutasAsignadas() {
+        return rutasAsignadas;
+    }
+
+    public void addRutaAsignada(asignacionRutas e) {
+        this.rutasAsignadas.add(e);
+    }
+
     public String getPlaca() {
         return placa;
     }
@@ -50,16 +69,6 @@ public class bus {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-
-
-    //Datos del tipo lista pero no se si asginarlos ya o como sale en el vieo (Many to one)
-    /*public List<asignacionRutas> getRutasAsignadas() {
-        return rutasAsignadas;
-    }
-    public void setRutasAsignadas(List<asignacionRutas> rutasAsignadas) {
-        this.rutasAsignadas = rutasAsignadas;
-    }*/
-
 
 
     

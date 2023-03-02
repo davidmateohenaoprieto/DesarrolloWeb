@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,7 +23,9 @@ public class asignacionRutas {
     @Column (name="dayAsig",nullable=false)
     private String dia_asignado;
 
-    
+    @ManyToOne
+    bus bus;
+
     public asignacionRutas() {
     }
     
