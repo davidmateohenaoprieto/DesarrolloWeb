@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+
+<body>
+
+    <h1>Conductores</h1>
+    <a th:href="@{/person/search}">Buscar</a>
+
+    <table class="list-driver">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>cedula</th>
+                <th>telefono</th>
+                <th>direccion</th>
+                <th>Lista Buses Asignados</th>
+                <th>Actualizar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr th:each="d : ${drivers}" th:if="${d.name}">
+                <td th:text="${d.name}"></td>
+                <td th:text="${d.identification}"></td>
+                <td th:text="${d.phoneNumber}"></td>
+                <td th:text="${d.address}"></td>
+                <td>
+                    <a th:href="@{/driver/update/{id}(id=${d.id})}">Buses Asignados</a>
+                </td>
+                <td>
+                    <a th:href="@{/driver/update/{id}(id=${d.id})}">Actualizar</a>
+                </td>
+                <td>
+                    <a th:href="@{/driver/delete/{id}(id=${d.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
